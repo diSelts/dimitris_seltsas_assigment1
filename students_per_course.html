@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students per Course</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
+        </script>
+</head>
+
+<body>
+
+    <div id="container">
+        <header class="jumbotron text-center">
+            <h1>Assigment 1 </h1>
+            <p>Student per Course</p>
+        </header>
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="intex_as1.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="course.html">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="students.html">Students</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="trainers.html">Trainers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="assigment.html">Assigment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="students_per_course.html">Student per Course</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="assigment_per_course.html">Assigment per Course</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="trainer_per_course.html">Trainers per Course</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="assigment_per_student_per_course.html">Assignment per Student per
+                            Course</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!--End of navigation bar-->
+
+        <div class="row">
+            <div class="col-lg-5 offset-lg-1 my-5">
+                <p class="bg-primary"><strong>Please fill the form below</strong></p>
+                <form action="">
+                    <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input type="text" class="form-control" name="firstname" id="firstname" required>
+                        <div class="alert alert-danger" id="firstname-error">Succes or Failure</div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" class="form-control" name="lastname" id="lastname" required>
+                        <div class="alert alert-danger" id="lastname-error">Succes or Failure</div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="form-control" value="html">Course Subject</label>
+                        <select class="form-control" class="form-control" id="subject" value="Choose your course"
+                            required>
+                            <option value="" selected hidden>Select Course</option>
+                            <option value="java">Java</option>
+                            <option value="csharp">C#</option>
+                            <option value="html">HTML</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submit">Add</button>
+                </form>
+            </div>
+
+            <div class="col-lg-5 offset-lg-1 my-5">
+                <p class="bg-primary"><strong>Please fill the form below</strong></p>
+                <form action="">
+                    <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input type="text" class="form-control" name="firstname" id="firstname" value="Dimitris">
+                    </div>
+                    <div class="form-group">
+                        <label for="lasttname">Last Name</label>
+                        <input type="text" class="form-control" name="lasttname" id="lasttname" value="Seltsas">
+                    </div>
+                    <div class="form-group">
+                        <label for="form-control">Course Subject</label>
+                        <select class="form-control" id="subject" value="Choose your course" required>
+                            <option value="java">Java</option>
+                            <option value="csharp">C#</option>
+                            <option value="html">HTML</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </form>
+
+            </div>
+
+            <!--End of bootstrap container-->
+        </div>
+        <footer class="jumbotron text-center">
+            <p>Copyright (c) 2022 DisProductions</p>
+        </footer>
+    </div>
+</body>
+<!--Validation-->
+<script>
+    $(document).ready(function () {
+        $('#firstname-error').hide();
+        $('#lastname-error').hide();
+
+        var error_fname = false;
+        var error_lname = false;
+
+        $('#firstname').focusout(function () {
+            checkFirstName();
+        });
+
+        $('#lastname').focusout(function () {
+            checkLastName();
+        });
+
+        function checkFirstName() {
+            var pattern = /^[a-zA-Z]*$/;
+            var firstName = $('#firstname').val();
+            console.log(firstname);
+            if (pattern.test(firstName) && firstName !== '') {
+                $('#firstname').css({ "border-bottom": "3px solid #34f458" });
+                $('#firstname-error').hide();
+                $('input[type=text]').val(function () {
+                    return this.value.toupperCase();
+                })
+            }
+            else {
+                $('#firstname-error').show().html("Should contain only characters!");
+                error_fname = true;
+            }
+        }
+        function checkLastName() {
+            var pattern = /^[a-zA-Z]*$/;
+            var lastName = $('#lastname').val();
+            console.log(lastname);
+            if (pattern.test(lastName) && lastName !== '') {
+                $('#lastname').css({ "border-bottom": "3px solid #34f458" });
+                $('#lastname-error').hide();
+                $('input[type=text]').val(function () {
+                    return this.value.toupperCase();
+                })
+
+            }
+            else {
+                $('#lastname-error').show().html("Should contain only characters!");
+                error_lname = true;
+            }
+        }
+
+    });        
+</script>
+
+</html>
